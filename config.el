@@ -41,9 +41,14 @@
 ;;
 ;; MANUAL DANTE HASKELL MODE SETUP
 ;;
+
+;; https://github.com/jyp/dante
 (require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'dante-mode)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
+;; Enable hlint
+(add-hook 'dante-mode-hook '(lambda () (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))))
+
 (setq flymake-no-changes-timeout nil)
 (setq flymake-start-syntax-check-on-newline nil)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
