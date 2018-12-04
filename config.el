@@ -52,3 +52,13 @@
 (setq flymake-no-changes-timeout nil)
 (setq flymake-start-syntax-check-on-newline nil)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
+
+
+;;Enable flyspell for latex
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
+(require 'ispell)
+(setq ispell-dictionary "en_GB-ise")
+
+;; Format using gq
+(setq-default fill-column 120)
