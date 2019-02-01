@@ -61,4 +61,4 @@
 (setq ispell-dictionary "en_GB-ise")
 
 ;; Format using gq
-(setq-default fill-column 120)
+(setq-default fill-column 100)
