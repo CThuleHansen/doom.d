@@ -18,6 +18,12 @@
 (setq flymake-start-syntax-check-on-newline nil)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
 
+(load! "hs-lint")
+(require 'hs-lint)
+(defun hs-lint-hook ()
+(local-set-key "\C-cl" 'hs-lint))
+(add-hook 'haskell-mode-hook 'hs-lint-hook)
+
 
 ;;Enable flyspell for latex
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
