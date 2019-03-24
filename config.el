@@ -21,15 +21,17 @@
 (load! "hs-lint")
 (require 'hs-lint)
 (defun hs-lint-hook ()
-(local-set-key "\C-cl" 'hs-lint))
+  (local-set-key "\C-cl" 'hs-lint))
 (add-hook 'haskell-mode-hook 'hs-lint-hook)
 
 
-;;Enable flyspell for latex
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'flyspell-mode)
+
+
+;; DICTIONARY
 (require 'ispell)
 (setq ispell-dictionary "en_GB-ise")
+(add-hook 'org-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; Format using gq
 (setq-default fill-column 100)
@@ -43,5 +45,66 @@
 ;; ORG MODE AGENDA LIST
 (setq org-agenda-files (list "/Users/casperthule/svn/iha_pgl-jointpub/phds/CasperThule/esa-acosim/ESA_DOCS/SRS/todo.org"))
 
-(def-package! tangotango-theme 
-	      :config (load-theme 'tangotango t))
+
+
+
+;; VISUAL CONFIGURATION
+;; It is necessary to have after! hl-line, because the face does not exist before it has been loaded.
+;; Without after emacs will throw "invalid face hl-line"
+
+(def-package! base16-theme
+  :config
+  (load-theme 'base16-default-dark t)
+  (after! hl-line
+    (set-face-background 'hl-line "gray20")))
+
+(set-face-attribute 'default nil :height 150)
+(set-face-attribute 'region nil :background "gray30")
+
+
+;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+;; may have their own settings.
+;;(load-theme 'doom-molokai t)
+;;
+;;(after! hl-line
+;;  (set-face-background 'hl-line "gray91"))
+;;
+;;(setq doom-font (font-spec :size 15))
+
+
+;; LATEX CONFIGURATION
+
+(def-package! tex;
+  :config
+  (setq TeX-PDF-mode t)
+  ;; Generate sync file and sync with C-v
+  (eval-after-load
+      "tex" '(add-to-list 'TeX-command-list
+                          '("latexmk" "latexmk -pdf %t --synctex=1" TeX-run-TeX)))
+
+  ;; Enable spell-checking
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+  (add-hook 'LaTeX-mode-hook
+            '(lambda ()
+               (reftex-mode)))
+;; LateX keywords that need colouring
+(setq font-latex-match-reference-keywords
+      '(
+        ("ac" "[{")
+        ("todo" "[{")
+        ("kw" "[{")
+        ("vsl" "[{")
+        ("vpp" "[{")
+        ("vrt" "[{")
+        ("acp" "[{")
+        ("contribution" "[{")
+        ("acrodef" "[{")
+        ("crefName" "[{")
+        ("cref" "[{")
+        ("Cref" "[{")
+        ("cnref" "[{")
+        ("vdmkw" "[{")
+        ))
+
+
+)

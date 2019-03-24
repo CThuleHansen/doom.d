@@ -9,4 +9,6 @@
 (package! haskell-mode)
 (package! dante)
 (package! groovy-mode)
-(package! tangotango-theme)
+(package! rainbow-delimiters)
+(package! solarized-theme)
+(package! base16-theme)
