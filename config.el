@@ -29,12 +29,13 @@
 
 ;; DICTIONARY
 (require 'ispell)
+(require 'flyspell)
 (setq ispell-dictionary "en_GB-ise")
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; Format using gq
-(setq-default fill-column 100)
+(setq-default fill-column 80)
 
 ;; Enable Groovy-mode for Jenkinsfile
 (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
@@ -56,7 +57,7 @@
   :config
   (load-theme 'base16-default-dark t)
   (after! hl-line
-    (set-face-background 'hl-line "gray20")))
+    (set-face-background 'hl-line "gray15")))
 
 (set-face-attribute 'default nil :height 150)
 (set-face-attribute 'region nil :background "gray30")
@@ -108,3 +109,12 @@
 
 
 )
+;; Required to get pdf-tools working: https://github.com/politza/pdf-tools/issues/480
+(setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig")
+
+;; Beacon - lights up when cursor jumps
+(def-package! beacon
+  :config
+  (setq-default beacon-lighter "")
+  (setq-default beacon-size 5)
+(add-hook 'after-init-hook 'beacon-mode))
