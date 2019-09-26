@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here
 
+;; Set default ispell dictionary
+(after! ispell (setq ispell-dictionary "en_GB"))    ;set the default dictionary
 
 ;; LATEX CONFIGURATION
 ;(def-package! tex
@@ -36,9 +38,9 @@
 ;        ("vdmkw" "[{")
 ;        ))
 ;)
-
-
+;
 
 ;; Necessary such that projectile does not attempt to contact SVN server
 ;;https://github.com/bbatsov/projectile/issues/520
 (setq projectile-svn-command "find . -type f -not -iwholename '*.svn/*' -print0")
+
