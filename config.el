@@ -53,14 +53,14 @@
 ;; It is necessary to have after! hl-line, because the face does not exist before it has been loaded.
 ;; Without after emacs will throw "invalid face hl-line"
 
-(def-package! base16-theme
-  :config
-  (load-theme 'base16-default-dark t)
-  (after! hl-line
-    (set-face-background 'hl-line "gray15")))
-
-(set-face-attribute 'default nil :height 150)
-(set-face-attribute 'region nil :background "gray30")
+;;(def-package! base16-theme
+;;  :config
+;;  (load-theme 'base16-default-dark t)
+;;  (after! hl-line
+;;    (set-face-background 'hl-line "gray15")))
+;;
+;;(set-face-attribute 'default nil :height 150)
+;;(set-face-attribute 'region nil :background "gray30")
 
 
 ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
@@ -118,3 +118,13 @@
   (setq-default beacon-lighter "")
   (setq-default beacon-size 5)
 (add-hook 'after-init-hook 'beacon-mode))
+
+
+(require 'org)
+(add-hook 'org-mode-hook
+          (lambda()
+            (org-toggle-link-display)))
+
+;; Necessary such that projectile does not attempt to contact SVN server
+;;https://github.com/bbatsov/projectile/issues/520
+(setq projectile-svn-command "find . -type f -not -iwholename '*.svn/*' -print0")

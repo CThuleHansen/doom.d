@@ -10,5 +10,5 @@
 (package! dante)
 (package! groovy-mode)
 (package! rainbow-delimiters)
-(package! base16-theme)
+;;(package! base16-theme)
 (package! beacon)
